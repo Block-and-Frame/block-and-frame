@@ -1,11 +1,13 @@
 language: node_js
 node_js:
 - '0.12'
+- '5'
+- "iojs"
 install:
 - npm install -g webpack 
 - npm install -g karma 
 - npm install -g mocha 
 - npm install
+before_script: webpack
 script:
 - npm test
-before_script: webpack
