@@ -9,10 +9,6 @@ node_js:
 - "0.12"
 - "iojs"
 install:
-- npm install -g webpack
 - npm install -g karma
 - npm install -g mocha
 - npm install
-before_script: webpack
-script:
-- npm test
