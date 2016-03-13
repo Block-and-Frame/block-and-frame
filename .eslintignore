@@ -1,0 +1,5 @@
+# Ignore built files
+build/
+
+# Ignore test files (scripted in ES5)
+test/
