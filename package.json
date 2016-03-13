@@ -9,6 +9,7 @@
     "start": "webpack-dev-server --watch-poll --inline --hot",
     "lint": "eslint . --ext .js --ext .jsx"
   },
+  "pre-commit": "lint",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Block-and-Frame/block-and-frame.git"
