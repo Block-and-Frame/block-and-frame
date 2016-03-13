@@ -12,5 +12,5 @@ install:
 - npm install -g karma
 - npm install -g mocha
 - npm install
-script:
+before_script:
 - npm run lint
