@@ -37,7 +37,7 @@ module.exports = {
       name: req.body.name,
       location: req.body.location,
       coordinates: req.body.coordinates,
-      description: req.body.descripion,
+      description: req.body.description,
     })
     .save()
     .then(function (event) {
