@@ -6,6 +6,7 @@ import Site from './containers/Site';
 import App from './containers/App';
 import Event from './containers/Event';
 import EventList from './containers/EventList';
+import CreateEvent from './containers/CreateEvent';
 import Signin from './containers/Signin';
 import Signup from './containers/Signup';
 import UserProfile from './containers/UserProfile';
@@ -19,6 +20,7 @@ const routes = (
       <Route path="profile" component={UserProfile} />
       <Route path="events" component={EventList} />
       <Route path="events/:eventID" component={Event} />
+      <Route path="events/create" component={CreateEvent} />
     </Route>
   </Router>
 );
