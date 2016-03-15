@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 
 class CreateEvent extends Component {
   constructor(props) {
@@ -37,9 +37,16 @@ class CreateEvent extends Component {
       location: this.state.location,
       description: this.state.description,
     };
-    // TODO: use axios to send event ot back end and reroute?
 
-    console.log(event);
+    // TODO: replace hardcoded userId in url depending on auth
+    axios.post('/api/events/1', event)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((res) => {
+      console.log(res);
+    });
+
     this.setState({
       name: '',
       location: '',
@@ -54,7 +61,7 @@ class CreateEvent extends Component {
   render() {
     return (
       <div>
-        CreateEvent hhere
+        Create an Event!
         <form
           onSubmit={this.preventDefaultSubmit}
         >
