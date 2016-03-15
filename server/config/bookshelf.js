@@ -1,5 +1,5 @@
 // initialize:
-var knex = require('knex')({
+const knex = require('knex')({
   client: 'pg',
   connection: {
     host: '127.0.0.1',
@@ -11,13 +11,14 @@ var knex = require('knex')({
   debug: true,
 });
 
-// As it creates a connection pool for the current database, you should use the bookshelf instance returned throughout your library:
-var bookshelf = require('bookshelf')(knex);
+// As it creates a connection pool for the current database, 
+// you should use the bookshelf instance returned throughout your library:
+const bookshelf = require('bookshelf')(knex);
 
 // User schema
-bookshelf.knex.schema.hasTable('users').then(function (exists) {
+bookshelf.knex.schema.hasTable('users').then(exists => {
   if (!exists) {
-    bookshelf.knex.schema.createTable('users', function (user) {
+    bookshelf.knex.schema.createTable('users', user => {
       user.increments('id').primary();
       user.string('email', 100).unique();
       user.string('username', 100).unique();
@@ -26,39 +27,39 @@ bookshelf.knex.schema.hasTable('users').then(function (exists) {
       user.string('city', 20);
       user.string('country', 20);
       user.timestamps();
-    }).then(function (table) {
-      console.log('Created usrs table');
+    }).then(table => {
+      console.log('Created users table');
     });
   }
 });
 
 // Event schema
-bookshelf.knex.schema.hasTable('events').then(function (exists) {
+bookshelf.knex.schema.hasTable('events').then(exists => {
   if (!exists) {
-    bookshelf.knex.schema.createTable('events', function (event) {
+    bookshelf.knex.schema.createTable('events', event =>{
       event.increments('id').primary();
       event.string('name', 100);
       event.string('location', 100);
       event.string('coordinates', 100);
       event.string('description', 1000);
       event.timestamps();
-    }).then(function (table) {
+    }).then(table) =>{
       console.log('Created events table');
     });
   }
 });
 
 // Event and Users join table
-bookshelf.knex.schema.hasTable('events_users').then(function (exists) {
+bookshelf.knex.schema.hasTable('events_users').then(exists => {
   if (!exists) {
-    bookshelf.knex.schema.createTable('events_users', function (eventUser) {
+    bookshelf.knex.schema.createTable('events_users', eventUser => {
       eventUser.increments('id').primary();
       // onDelete('CASCADE') deletes foreign keys of deleted models
       eventUser.integer('event_id').references('events.id').onDelete('CASCADE');
       eventUser.integer('user_id').references('users.id').onDelete('CASCADE');
       eventUser.boolean('is_creator');
       eventUser.timestamps();
-    }).then(function (table) {
+    }).then(table => {
       console.log('Created events_users table');
     });
   }
