@@ -6,7 +6,7 @@ class Signin extends Component {
     super(props);
 
     this.state = {
-      username: '',
+      email: '',
       password: '',
     };
 
@@ -17,7 +17,7 @@ class Signin extends Component {
   }
 
   onUsernameChange(e) {
-    this.setState({ username: e.target.value });
+    this.setState({ email: e.target.value });
   }
 
   onPasswordChange(e) {
@@ -26,7 +26,7 @@ class Signin extends Component {
 
   onSigninSubmit() {
     const user = {
-      username: this.state.username,
+      email: this.state.email,
       password: this.state.password,
     };
 
@@ -43,7 +43,7 @@ class Signin extends Component {
     });
 
     // clear forms
-    this.setState({ username: '', password: '' });
+    this.setState({ email: '', password: '' });
   }
 
   preventDefaultSubmit(e) {
@@ -56,9 +56,9 @@ class Signin extends Component {
         <form
           onSubmit={this.preventDefaultSubmit}
         >
-          <label>Username: </label>
+          <label>email: </label>
           <input
-            value={this.state.username}
+            value={this.state.email}
             onChange={this.onUsernameChange}
           /><br />
           <label>Password: </label>

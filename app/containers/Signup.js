@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router';
 
 class Signup extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      username: '',
+      email: '',
       password: '',
+      showLink: false,
     };
 
     this.onUsernameChange = this.onUsernameChange.bind(this);
@@ -16,7 +19,7 @@ class Signup extends Component {
   }
 
   onUsernameChange(e) {
-    this.setState({ username: e.target.value });
+    this.setState({ email: e.target.value });
   }
 
   onPasswordChange(e) {
@@ -25,14 +28,23 @@ class Signup extends Component {
 
   onSignupSubmit() {
     const user = {
-      username: this.state.username,
+      email: this.state.email,
       password: this.state.password,
     };
 
     console.log('Submit user signup here: ', user);
 
-    // clear forms
-    this.setState({ username: '', password: '' });
+    axios.post('/api/users/', user)
+    .then((res) => {
+      console.log(res);
+      const userId = res.data.id;
+      // mocking the usage of JWTs or the like:
+      window.localStorage.setItem('id', userId);
+    })
+    .catch((res) => {
+      console.log(res);
+    });
+    this.setState({ email: '', password: '', showLink: true });
   }
 
   preventDefaultSubmit(e) {
@@ -46,8 +58,8 @@ class Signup extends Component {
           onSubmit={this.preventDefaultSubmit}
         >
           <input
-            placeholder="username"
-            value={this.state.username}
+            placeholder="email"
+            value={this.state.email}
             onChange={this.onUsernameChange}
           />
           <input
@@ -59,6 +71,7 @@ class Signup extends Component {
             onClick={this.onSignupSubmit}
           >Sign Up</button>
         </form>
+        { this.state.showLink ? <Link to={'/profile'}> You have successfully signed up! Go to your new user profile. </Link> : null }
       </div>
     );
   }

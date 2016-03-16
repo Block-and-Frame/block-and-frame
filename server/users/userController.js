@@ -52,7 +52,7 @@ module.exports = {
         });
         newUser.save()
         .then(function(newUser) {
-          res.status(201).send(user);
+          res.status(201).send(newUser);
         })
         .catch(function (err) {
           res.status(500).send(err);

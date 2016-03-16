@@ -20,7 +20,7 @@ const routes = (
       <Route path="profile" component={UserProfile} />
       <Route path="events" component={EventList} />
       <Route path="events/:eventID" component={Event} />
-      <Route path="events/create" component={CreateEvent} />
+      <Route path="eventcreate" component={CreateEvent} />
     </Route>
   </Router>
 );
