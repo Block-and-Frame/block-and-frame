@@ -13,7 +13,7 @@ class Event extends React.Component {
             <div className="host">
               Hosted by {this.props.creator_name || this.props.creator_email}
             </div>
-            <div className="description">{this.props.description}</div>
+            <div className="description">{this.props}</div>
           </div>
         </div>
       </div>

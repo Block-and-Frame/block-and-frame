@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Event from './Event';
 import MenuBar from '../components/MenuBar';
+import SearchBar from '../components/SearchBar';
 
 class EventList extends React.Component {
   constructor(props) {
@@ -23,6 +24,10 @@ class EventList extends React.Component {
       });
   }
 
+  handleUserInput(searchTerm) {
+    this.setState({ filterText: searchTerm });
+  }
+
   render() {
     const eventNodes = this.state.data.map((event) => {
       return (
@@ -34,7 +39,6 @@ class EventList extends React.Component {
           id={event.id}
           creator_name={event.users[0].username}
           creator_email={event.users[0].email}
-
         >
         .
         </Event>
@@ -48,11 +52,16 @@ class EventList extends React.Component {
           <h1 className="ui dividing header">Local Spreads</h1>
         </div>
         <div className="ui segment">
+          <SearchBar
+            filterText={this.state.filterText}
+            onUserInput={this.handleUserInput.bind(this)}
+          />
           {eventNodes}
         </div>
       </div>
     );
   }
+
 }
 
 export default EventList;
