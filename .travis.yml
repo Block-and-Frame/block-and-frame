@@ -1,3 +1,4 @@
+sudo: required
 language: node_js
 node_js:
 - "0.12"
@@ -8,4 +9,4 @@ install:
 before_script:
 - npm run lint
 - psql -c 'create database block_and_frame_test;' -U postgres
-- cp database.yml.travis config/database.yml
+- cp database.yml.travis server/config/database.yml
