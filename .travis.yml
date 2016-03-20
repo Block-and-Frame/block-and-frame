@@ -1,14 +1,13 @@
+sudo: required
 language: node_js
 node_js:
-- "5"
-- "5.1"
 - "4"
-- "4.2"
-- "4.1"
-- "4.0"
-- "0.12"
-- "iojs"
+- "5"
+services:
+- postgresql
 install:
 - npm install
 before_script:
 - npm run lint
+- psql -c 'create database block_and_frame_test;' -U postgres
+- cp database.yml.travis server/config/database.yml
