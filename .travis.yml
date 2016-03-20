@@ -1,14 +1,13 @@
 language: node_js
 node_js:
-- "5"
-- "5.1"
-- "4"
-- "4.2"
-- "4.1"
-- "4.0"
+- "5.7"
 - "0.12"
 - "iojs"
+services:
+- postgresql
 install:
 - npm install
 before_script:
 - npm run lint
+- psql -c 'create database block-and-frame-test;' -U postgres
+- cp database.yml.travis config/database.yml

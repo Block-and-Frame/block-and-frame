@@ -1,16 +1,28 @@
-const Config = require('./config.js');
-// initialize:
+// For Travis CI 
+//TODO use ENV variables
+let config;
+try {
+  config = require('./config.js');
+} catch (e) {
+  config = {
+    host: '127.0.0.1',
+    user: '',
+    pw: '',
+    db: 'block-and-frame-test',
+ };
+}
+
 const knex = require('knex')({
   client: 'pg',
   connection: {
-    host: Config.host,
-    user: Config.user,
-    password: Config.pw,
-    database: Config.db,
-  },
-  // debug: true,
-});
-
+    host: config.host,
+    user: config.user,
+    password: config.pw,
+    database: config.db,
+    charset: 'utf8',
+ },
+   // debug: true,
+ });
 // As it creates a connection pool for the current database,
 // you should use the bookshelf instance returned throughout your library:
 const bookshelf = require('bookshelf')(knex);

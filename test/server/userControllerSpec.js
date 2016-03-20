@@ -13,21 +13,21 @@ describe('User API: User Controller Spec', () => {
     });
   });
 
-  it("GET /api/users/ should respond with 200", function (done) {
-    this.timeout(4000);
-    request(server)
-    .get('/api/users')
-    .expect(200)
-    .end(done);
-  });
+  // it("GET /api/users/ should respond with 200", function (done) {
+  //   this.timeout(4000);
+  //   request(server)
+  //   .get('/api/users')
+  //   .expect(200)
+  //   .end(done);
+  // });
 
-  it("GET /api/users/:id should respond with 200", function (done) {
-    this.timeout(4000);
-    request(server)
-    .get('/api/users/1')
-    .expect(200)
-    .end(done);
-  });
+  // it("GET /api/users/:id should respond with 200", function (done) {
+  //   this.timeout(4000);
+  //   request(server)
+  //   .get('/api/users/1')
+  //   .expect(200)
+  //   .end(done);
+  // });
 
 
   // it("GET USER BY ID SEND RETURN A USER: /api/users/1 should response should contain 'example'", function (done) {
