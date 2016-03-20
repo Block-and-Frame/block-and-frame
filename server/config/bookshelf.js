@@ -8,7 +8,7 @@ try {
     host: '127.0.0.1',
     user: '',
     pw: '',
-    db: 'block-and-frame-test',
+    db: 'block_and_frame_test',
  };
 }
 
