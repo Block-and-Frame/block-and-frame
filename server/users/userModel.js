@@ -1,5 +1,5 @@
 const bookshelf = require('../config/bookshelf');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt-nodejs');
 const Promise = require('bluebird');
 
 const User = bookshelf.Model.extend({

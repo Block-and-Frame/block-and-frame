@@ -5,17 +5,17 @@ const passport = require('passport');
 
 const routes = require('../routes.js');
 const authRoutes = require('../auth/authRoutes');
+const publicPath = path.resolve(__dirname, '/dist');
 
+const isDeveloping = process.env.NODE_ENV !== 'production';
 const webpack = require('webpack');
 const webpackConfig = require('../../webpack.config.js');
 const compiler = webpack(webpackConfig);
-
+const webpackHotMiddleware = require('webpack-hot-middleware')(compiler);
 const webpackDevMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
   noInfo: true,
 });
-
-const webpackHotMiddleware = require('webpack-hot-middleware')(compiler);
 
 module.exports = (app, express) => {
   // Silence for testing
@@ -28,15 +28,15 @@ module.exports = (app, express) => {
 
   app.use(passport.initialize());
   require('./passport')(passport);
-
-  app.use(webpackDevMiddleware);
-  app.use(webpackHotMiddleware);
-
-  app.use('/dist', express.static(path.join(__dirname, '/../../dist')));
-
   app.use('/auth', authRoutes);
   app.use('/api', passport.authenticate('jwt', { session: false }), routes);
 
+  if (isDeveloping) {
+    app.use(webpackDevMiddleware);
+    app.use(webpackHotMiddleware);
+  } else {
+    app.use('/dist', express.static(publicPath));
+  }
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../../dist/index.html'));
   });

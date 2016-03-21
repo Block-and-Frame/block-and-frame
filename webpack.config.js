@@ -31,11 +31,18 @@ module.exports = {
         loader: 'eslint-loader',
         exclude: [PATHS.modules, PATHS.dist],
       },
+      {
+        test: /\.css$/,
+        loader: 'style!css',
+      },
     ],
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development'),
+    }),
 
     // No errors plugin keeps webpack from building when there are linter errors.
     // new webpack.NoErrorsPlugin(),
