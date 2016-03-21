@@ -24,8 +24,8 @@ class EventList extends React.Component {
       });
   }
 
-  handleUserInput(searchTerm) {
-    this.setState({ filterText: searchTerm });
+  handleUserInput(event) {
+    this.setState({ filterText: event.target.value });
   }
 
   render() {
@@ -54,7 +54,7 @@ class EventList extends React.Component {
         <div className="ui segment">
           <SearchBar
             filterText={this.state.filterText}
-            onUserInput={this.handleUserInput.bind(this)}
+            onUserInput={this.handleUserInput}
           />
           {eventNodes}
         </div>
