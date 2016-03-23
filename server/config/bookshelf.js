@@ -1,4 +1,18 @@
-const config = require('./config.js');
+// TODO use enviroment variables
+// This is a work-around for Travis CI
+var config; // let doesnt work
+try {
+  config = require('./config.js');
+} catch (err) {
+  console.log(err);
+  config = {
+    host: '127.0.0.1',
+    user: '',
+    pw: '',
+    db: 'block_and_frame_test',
+  };
+}
+
 const knex = require('knex')({
   client: 'pg',
   connection: {

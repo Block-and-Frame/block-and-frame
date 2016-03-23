@@ -1,6 +1,15 @@
 const User = require('../users/userModel');
 const jwt = require('jsonwebtoken');
-const secret = require('../config/config').secret;
+
+// TODO use enviroment variables
+// This is a work-around for Travis CI
+var config; // let doesnt work
+try {
+  config = require('./config.js').secret;
+} catch (err) {
+  console.log(err);
+  secret = 'localtestingsecret!';
+}
 
 module.exports = {
   signin(req, res) {

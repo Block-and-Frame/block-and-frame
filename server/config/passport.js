@@ -1,7 +1,18 @@
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const User = require('../users/userModel');
-const config = require('./config');
+
+// TODO use enviroment variables
+// This is a work-around for Travis CI
+var config; // let doesnt work
+try {
+  config = require('./config.js');
+} catch (err) {
+  console.log(err);
+  config = {
+    secret: 'localtestingsecret!',
+  };
+}
 
 module.exports = (passport) => {
   const options = {

@@ -16,6 +16,7 @@
     "react"
   ],
   "rules": {
+    "no-var": "warn",
     "no-undef": "off",
     "max-len": "off",
     "func-names": "off",
