@@ -3,9 +3,9 @@ const jwt = require('jsonwebtoken');
 
 // TODO use enviroment variables
 // This is a work-around for Travis CI
-var config; // let doesnt work
+var secret; // let doesnt work
 try {
-  config = require('./config.js').secret;
+  secret = require('./config.js').secret;
 } catch (err) {
   console.log(err);
   secret = 'localtestingsecret!';
