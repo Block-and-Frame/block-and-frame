@@ -25,6 +25,7 @@ class UniqueEvent extends React.Component {
       markers: [],
       url: location.href.split('/').pop(),
       creatorId: '',
+      msgDivClass: 'warning',
     };
 
     this.setEdit = this.setEdit.bind(this);
@@ -35,6 +36,7 @@ class UniqueEvent extends React.Component {
     this.handleMapClick = this.handleMapClick.bind(this);
     this.handleMarkerRightClick = this.handleMarkerRightClick.bind(this);
     this.handleCheckBoxClick = this.handleCheckBoxClick.bind(this);
+    this.handleJoinEventWithContributions = this.handleJoinEventWithContributions.bind(this);
   }
 
   componentDidMount() {
@@ -57,6 +59,11 @@ class UniqueEvent extends React.Component {
       this.state.contributions[index].bringer = null;
     }
     console.log(this.state.contributions[index]); 
+  }
+
+  handleJoinEventWithContributions(eventId, contribs) {
+    this.setState({ msgDivClass: 'positive' });
+    eventHelpers.joinEventWithContributions(eventId, contribs);
   }
 
   initializePage() {
@@ -149,7 +156,7 @@ class UniqueEvent extends React.Component {
 
 
   render() {
-    console.log('creatorId!!', this.state.creatorId)
+    console.log('creatorId!!', this.state.creatorId);
     this.state.contributions = this.state.contributions || [];
     return (
     <div>
@@ -159,8 +166,8 @@ class UniqueEvent extends React.Component {
         <div className="sixteen wide column"><br /></div>
           <div className="five wide column">
             {/* TODO: reuse UserInfo component here */}
-            <div className="ui card">
-              <div className="image">
+            <div className="ui very padded raised segment card">
+              <div className="ui image ">
                 <img className="ui tiny circular right floated image" src="http://www.geekstogo.com/forum/public/style_images/shift/profile/xdefault_large.png.pagespeed.ic.-RW8oDYs8z.png" />
               </div>
               <div className="ui header">
@@ -195,11 +202,13 @@ class UniqueEvent extends React.Component {
                   contributions={this.state.contributions}
                   setEdit={this.setEdit}
                   sameEmail={this.state.editable}
+                  handleJoinEventWithContributions={this.handleJoinEventWithContributions}
                 />
               }
             </div>
 
             <ContributionList
+              msgDivClass={this.state.msgDivClass}
               contributions={this.state.contributions}
               onCheckBoxClick={this.handleCheckBoxClick}
             />

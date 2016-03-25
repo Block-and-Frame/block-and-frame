@@ -109,7 +109,9 @@ class UserProfile extends React.Component {
       <div>
         <MenuBar />
         <div className="ui container">
-          <h1 className="ui dividing header">
+          <h1 className="ui dividing header"
+            id="editprofileheader"
+          >
             Edit Profile:
           </h1>
         </div>

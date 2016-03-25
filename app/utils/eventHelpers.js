@@ -55,6 +55,7 @@ const eventHelpers = {
   },
   // wrap blobSender and joinEvent in third function
   joinEventWithContributions(eventId, contributions) {
+    console.log('helpers', eventId, contributions)
     eventHelpers.joinEvent(eventId);
     eventHelpers.contributionsSave(contributions, eventId);
   },
@@ -67,7 +68,7 @@ const eventHelpers = {
       headers: { Authorization: token },
     })
     .then((response) => {
-      console.log(response);
+      console.log('cont save', response);
     })
     .catch((error) => {
       console.log(error);

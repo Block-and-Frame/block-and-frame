@@ -40,6 +40,7 @@ const UniqueEventView = (props) => {
         <JoinEventButton
           eventId={props.eventId} 
           contributions={props.contributions}
+          handleJoinEventWithContributions={props.handleJoinEventWithContributions}
         />
       }
     </div>
