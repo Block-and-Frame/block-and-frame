@@ -40,5 +40,8 @@
     "space-before-function-paren":"warn",
     "no-new":"off",
     "no-unused-vars": "warn",
+    "array-callback-return": "off",
+    "consistent-return":"off",
+    "no-else-return":"off"
   },
 }

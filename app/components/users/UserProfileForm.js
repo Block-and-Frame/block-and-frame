@@ -72,18 +72,14 @@ class UserProfileForm extends Component {
             />
           </div>
 
-          <div className="field">
-            <label><i className="instagram icon"></i> Instagram:</label>
-            <input placeholder= "@spread_out" />
-          </div>
+            <button
+              className="ui button"
+              onClick={this.props.onProfileSubmit}
+            >
+              <i className="icon save"></i>
+              Save Profile
+            </button>
 
-          <button
-            className="ui button"
-            onClick={this.props.onProfileSubmit}
-          >
-            <i className="icon save"></i>
-            Save Profile
-          </button>
 
           <button
             className="ui basic button"

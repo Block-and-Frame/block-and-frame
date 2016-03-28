@@ -22,9 +22,10 @@ const User = bookshelf.Model.extend({
     return new Promise((resolve, reject) => {
       bcrypt.hash(model.get('password'), null, null, (err, hash) => {
         if (err) {
-          console.log('Error here');
+          console.log('Error here in hashPassword');
           reject(err);
         }
+        console.log('PASSWORD', model.get('password'));
         model.set('password', hash);
         resolve(hash);
       });

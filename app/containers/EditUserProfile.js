@@ -4,6 +4,9 @@ import MenuBar from '../components/MenuBar';
 import UserProfileForm from '../components/users/UserProfileForm';
 import ImageUpload from '../components/users/Uploader';
 import EditSuccess from '../components/users/EditSuccess';
+//
+import authHelpers from '../utils/authHelpers';
+//
 
 // TODO: Confirm profile deletion, msg about success, redirect user to home.
 
@@ -18,7 +21,8 @@ class UserProfile extends React.Component {
       location: '',
       isTraveling: null,
       sucess: false,
-      // instagram
+      instagram: '',
+      instagramProfilePic: '',
     };
 
     this.onNameChange = this.onNameChange.bind(this);
@@ -30,18 +34,28 @@ class UserProfile extends React.Component {
     this.handleProfileSubmit = this.handleProfileSubmit.bind(this);
     this.handleDeleteUser = this.handleDeleteUser.bind(this);
     this.preventDefaultSubmit = this.preventDefaultSubmit.bind(this);
-    // this.onInstagramChange = this.onBioChange.bind(this);
   }
-
+  componentWillMount() {
+    // instagram sign in.
+    const jwtAndId = location.href.split('?')[1];
+    const array = jwtAndId.split('&');
+    const jwt = `JWT '${array[0]}`;
+    const id = array[1];
+    authHelpers.storeToken(jwt, id);
+    // TODO: get the jwt out of the href
+  }
   componentDidMount() {
     userHelpers.getCurrentUserData()
     .then((user) => {
+      console.log('user in comp did mount', user.data);
       this.setState({
         email: user.data.email,
         username: user.data.username,
         bio: user.data.bio,
         location: user.data.location,
         isTraveling: user.data.is_traveling,
+        instagramProfilePic: user.data.instagram_profile_pic,
+        instagram: user.data.instagram_username,
       });
     });
   }
@@ -69,10 +83,6 @@ class UserProfile extends React.Component {
   onTravelingChange(e) {
     this.setState({ isTraveling: e.target.checked });
   }
-
-  // onInstagramChange(e) {
-  //   this.setState({ instagram: e.target.value });
-  // }
 
   handleProfileSubmit() {
     userHelpers.updateUser(this.state)
@@ -126,11 +136,10 @@ class UserProfile extends React.Component {
               onDeleteUser={this.handleDeleteUser}
               onProfileSubmit={this.handleProfileSubmit}
               preventDefaultSubmit={this.preventDefaultSubmit}
-              // TODO instagram={this.state.instagram}
-              // TODO onInstagramChange={this.onInstagramChange}
             />
             <EditSuccess success={this.state.success} />
           </div>
+          <img src={this.state.instagramProfilePic} alt="" className="ui circular image" />
         </div>
       </div>
     );

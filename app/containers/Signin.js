@@ -32,7 +32,7 @@ class Signin extends Component {
     // submit the form
     this.handleSubmit(this.state.email, this.state.password);
     // hacky way to make only creator able to edit
-    this.sessionStorage.email = this.state.email;
+    window.sessionStorage.email = this.state.email;
     // clear form
     this.setState({ email: '', password: '' });
   }

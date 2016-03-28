@@ -29,6 +29,7 @@ module.exports = (app, express) => {
 
   app.use(passport.initialize());
   require('./passport')(passport);
+
   app.use('/auth', authRoutes);
   app.use('/api', /* passport.authenticate('jwt', { session: false }), */ routes);
 

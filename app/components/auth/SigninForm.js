@@ -51,6 +51,9 @@ const SigninForm = (props) => {
           errorMessage={props.errorMessage}
         />
       </div>
+      <button className="ui button" >
+        <a href="/auth/instagram">log in with instagram</a>
+      </button>
     </div>
   );
 };

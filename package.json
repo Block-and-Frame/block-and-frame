@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha test/**/*.js --require ./test/setup.js --compilers js:babel-core/register",
     "start": "node index.js",
-    "lint": "eslint . --ext .js --ext .jsx"
+    "lint": "eslint . --ext .js --ext .jsx",
+    "nodemon": "nodemon index.js"
   },
   "pre-commit": "lint",
   "repository": {
@@ -61,6 +62,7 @@
     "morgan": "^1.7.0",
     "node-env-file": "^0.1.8",
     "passport": "^0.3.2",
+    "passport-instagram": "^1.0.0",
     "passport-jwt": "^2.0.0",
     "path": "^0.12.7",
     "pg": "^4.5.1",

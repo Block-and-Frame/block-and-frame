@@ -21,7 +21,9 @@ module.exports = {
     User.where({ id: req.params.userId })
     .fetch({
       withRelated: ['events'],
-      columns: ['id', 'email', 'username', 'bio', 'location', 'is_traveling'],
+      columns: [
+        'id', 'email', 'username', 'bio', 'location', 'is_traveling', 'instagram_id', 'instagram_token', 'instagram_username', 'instagram_profile_pic',
+      ],
     })
     .then((user) => {
       if (!user) {
@@ -73,6 +75,7 @@ module.exports = {
   },
 
   editUser(req, res) {
+    console.log('REQ BODY XXX', req.body)
     User.where({ id: req.params.userId })
     .fetch()
     .then((user) => {
@@ -85,6 +88,7 @@ module.exports = {
           bio: req.body.bio,
           location: req.body.location,
           is_traveling: req.body.is_traveling,
+          instagram_username: req.body.instagram_username,
         });
       }
     })

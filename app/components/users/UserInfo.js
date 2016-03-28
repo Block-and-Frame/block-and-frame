@@ -2,10 +2,11 @@ import React from 'react';
 
 const UserInfo = ({ user, avatarURL }) => {
   return (
-    <div className="six wide column">
+    <div>
       <div className="ui card">
         <div className="image">
           <img src={avatarURL} />
+          
         </div>
         <div className="content">
           <div className="header">

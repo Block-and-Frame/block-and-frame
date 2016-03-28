@@ -36,7 +36,6 @@ const userHelpers = {
       headers: { Authorization: token },
     });
   },
-
   deleteUser() {
     const userId = window.localStorage.getItem('id');
     const token = window.localStorage.getItem('token');
