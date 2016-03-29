@@ -4,7 +4,6 @@ import moment from 'moment';
 
 class Event extends React.Component {
   render() {
-    //console.log('evenlistitem Poops,', this.props)
     const dateTime = moment(this.props.date)
     .set({
       hour: this.props.time.split(':')[0],
