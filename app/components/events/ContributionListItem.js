@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import userHelpers from '../../utils/userHelpers';
+import BringerView from './BringerView.js';
 
 class Contribution extends Component {
   constructor(props) {
@@ -7,9 +8,11 @@ class Contribution extends Component {
 
     this.state = {
       userEmail: '',
-      userName: '',
+      username: '',
       userLocation: '',
       isTraveling: null,
+      instagramPic: '',
+      instagramUsername: '',
     };
 
     this._onCheckBoxClick = this._onCheckBoxClick.bind(this);
@@ -19,11 +22,14 @@ class Contribution extends Component {
     if (this.props.bringer) {
       userHelpers.getAnyUserById(this.props.bringer)
       .then((user) => {
+        console.log('indiv user in ContributionListItem ajax calls', user);
         this.setState({
           userEmail: user.data.email,
-          userName: user.data.username,
+          username: user.data.username,
           isTraveling: user.data.is_traveling,
           userLocation: user.data.location,
+          instagramPic: user.data.instagram_profile_pic,
+          instagramUsername: user.data.instagram_username,
         });
       });
     }
@@ -59,17 +65,10 @@ class Contribution extends Component {
             </div>
           }
         </div>
-        { /* If user is bringing item, display message, also checking all fields are avialble */
-          this.props.bringer && this.state.userName && this.state.userLocation &&
-          <div className="extra content">
-            <p>Contributor:</p>
-            <img className="ui avatar mini image" src="http://www.geekstogo.com/forum/public/style_images/shift/profile/xdefault_large.png.pagespeed.ic.-RW8oDYs8z.png" />
-            <span>
-              <a>{this.state.userName}</a>, {this.state.isTraveling ? 'a traveler' : ''} from {this.state.userLocation}
-            </span>
-            <a className="right floated" href="instagram.com"><i className="icon instagram"></i></a> 
-          </div>
-        }
+        {this.props.bringer && <BringerView 
+          info={this.state}
+        />}
+        
       </div>
     );
   }

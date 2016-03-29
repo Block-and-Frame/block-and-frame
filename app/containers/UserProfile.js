@@ -91,7 +91,7 @@ class UserProfile extends Component {
           })} 
           </div>
           <div className="ten wide column">
-            <div className="ui centered header">My Spreads</div>
+            <div className="ui centered large header">My Spreads</div>
             <div className="ui segment">
               <UserEventList events={this.state.events} />
             </div>

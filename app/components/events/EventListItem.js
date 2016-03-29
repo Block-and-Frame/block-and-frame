@@ -12,13 +12,13 @@ class Event extends React.Component {
     .add(1, 'day'); // not sure why a day has to be added
     
     return (
-      <div className="ui massive relaxed list">
+      <div className="ui large list">
         <div className="item">
-          <div className="ui very padded text container segment">
+          <div className="ui padded text container raised segment">
             <Link to={`/${this.props.id}`} className="header">{this.props.name}</Link>
             <div className="location">{this.props.location}</div>
             <div className="host">
-              <div>Hosted by {this.props.creator_name || this.props.creator_email}</div>
+              <div>Hosted by: {this.props.creator_name || this.props.creator_email}</div>
               <div>{dateTime.format('MMMM Do YYYY, h:mm:ss a')}</div>
             </div>
             <div className="description">

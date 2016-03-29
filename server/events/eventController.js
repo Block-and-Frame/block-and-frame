@@ -5,7 +5,7 @@ const eventController = {
     Event.fetchAll({
       withRelated: [{ users(qb) {
         // NOTE Omiting password
-        qb.column('email', 'username', 'bio', 'is_traveling', 'location');
+        qb.column('email', 'username', 'bio', 'is_traveling', 'location', 'instagram_username', 'instagram_profile_pic', 'instagram_id');
       } }],
     })
     .then((events) => {

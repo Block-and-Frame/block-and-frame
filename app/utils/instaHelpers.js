@@ -13,7 +13,9 @@ const instaHelpers = {
       hashtag = hashtag.slice(1);
       console.log(hashtag);
     }
-    return axios.post('api/insta/getUniqueTagPics', { hashtag, userId });
+    if (hashtag !== undefined) {
+      return axios.post('api/insta/getUniqueTagPics', { hashtag, userId });
+    }
   },
 };
 

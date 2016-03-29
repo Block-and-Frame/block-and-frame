@@ -12,13 +12,16 @@ class UserEventListItem extends Component {
     .add(1, 'day'); // not sure why a day has to be added
     
     let status = this.props.isHost ? 'host' : 'attend';
-    status = moment() > dateTime ? `${status}ed` : `will ${status}`;
+    status = moment() > dateTime ? `I ${status}ed:` : `I'm going to ${status.toLowerCase()}:`;
     
     return (
       <div className="item">
         <div className="content">
-          <Link className="header" to={`/${this.props.id}`}>
-            {status} {this.props.name}
+        <div className="ui medium header">
+          {status} 
+        </div>
+          <Link className="ui medium header" to={`/${this.props.id}`}>
+            {this.props.name}
           </Link>
           <div>{dateTime.fromNow()}</div>
           <div>{this.props.location}</div>
