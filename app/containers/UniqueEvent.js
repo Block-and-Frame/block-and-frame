@@ -48,8 +48,6 @@ class UniqueEvent extends React.Component {
     this.loadMarker = this.loadMarker.bind(this);
     this.initializePage = this.initializePage.bind(this);
     this.determineCenter = this.determineCenter.bind(this);
-
-    this.callbackRender = this.render.bind(this);
   }
 
   componentDidMount() {
