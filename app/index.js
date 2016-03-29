@@ -25,6 +25,7 @@ import Profile from './containers/UserProfile';
 import EditUserProfile from './containers/EditUserProfile';
 import UniqueEvent from './containers/UniqueEvent';
 import LandingPage from './containers/LandingPage';
+import About from './containers/About';
 
 
 // TODO: Index Route may change - whatever we want to render
@@ -35,6 +36,7 @@ const routes = (
       <IndexRoute component={LandingPage} />
       <Route path="signin" component={Signin} />
       <Route path="signup" component={Signup} />
+      <Route path="about" component={About} />
       <Route path="editProfile" component={EditUserProfile} />
       <Route path="profile" component={Profile} />
       <Route path="events" component={EventList} />

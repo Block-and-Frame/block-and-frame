@@ -1,10 +1,31 @@
-$color:white;
+$color: white;
 
 body {
   background-color: $color;
   font-family: Roboto, sans-serif;
   font-weight: 100;
   line-height: 1;
+}
+
+.instructions {
+  position: relative;
+  min-height: 500px;
+  vertical-align: center;
+  text-align: center;
+  .instruction {
+    max-width:150rem;
+    h1, h2, p {
+      color: black;
+    }
+  }
+}
+
+.about {
+  margin: 3rem;
+  padding: 1rem 8rem 1rem 8rem;
+  .divider {
+    margin: 3em;
+  }
 }
 
 .carousel {
@@ -14,7 +35,6 @@ body {
 }
 
   .carousel__panes {
-    margin:  100px;
     padding: 0;
     list-style: none;
     position: relative;
@@ -27,41 +47,71 @@ body {
   }
     
   .carousel__pane {
+    padding: 0px 30px 0px 30px;
     position: relative;
     display: table-cell;
     vertical-align: middle;
-    width: 20%;
+    text-align: left;
+    width: 15%;
+    h3, i {
+      vertical-align: middle;
+    }
+
   }
 
 @keyframes carousel {
   0%,
-  20% {
+  17.5% {
     transform: translate3d(0, 0, 0);
     filter: blur(0);
   }
-  40% {
-    transform: translate3d(-20%, 0, 0);
+
+  19.0625% {
     filter: blur(2px);
   }
-  60% {
+
+  20.625%,
+  38.125% {
+    transform: translate3d(-20%, 0, 0);
+    filter: blur(0);
+  }
+
+  39.6875% {
+    filter: blur(2px);
+  }
+
+  41.25%,
+  58.75% {
     transform: translate3d(-40%, 0, 0);
     filter: blur(0);
   }
-  80% {
+
+  60.3125% {
     filter: blur(2px);
-    transform: translate3d(-60%, 0, 0);
   }
+
+  61.875%,
+  79.375% {
+    transform: translate3d(-60%, 0, 0);
+    filter: blur(0);
+  }
+
+  80.9375% {
+    filter: blur(2px);
+  }
+
+  82.5%,
   100% {
     transform: translate3d(-80%, 0, 0);
     filter: blur(0);
   }
 }
 
+<<<<<<< HEAD
 .insta-fixed {
   cursor: pointer;
   width: 150px;
   height: 150px;
 }
-
-
-
+=======
+>>>>>>> f648b01771d60085f0f1af7857a19751a76229ee

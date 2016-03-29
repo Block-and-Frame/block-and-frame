@@ -13,7 +13,6 @@ class InstructionItem extends Component {
   }
   handleClick() {
     const item = `#${this.props.s1Step}`;
-    console.log(item);
     let dir = '';
     if (item === '#1') {
       dir = 'flip left';
@@ -26,10 +25,10 @@ class InstructionItem extends Component {
   }
   render() {
     return (        
-      <div className="ui shape column" onClick={this.handleClick} id={this.props.s1Step} >
-        <div className="sides" style={{ textAlign: 'center' }} >
+      <div className="ui shape column instruction" onClick={this.handleClick} id={this.props.s1Step} >
+        <div className="sides" >
           <div className="active side">
-            <img src={this.props.s1Source} width="100" />
+            <img src={this.props.s1Source} width="150" />
             <h2> - {this.props.s1Step} - </h2>
           </div>
           <div className="side" >

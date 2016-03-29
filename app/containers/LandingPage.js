@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import Signin from './Signin';
-import InstructionItem from '../components/landing/InstructionItem';
-import InstructionText from '../components/landing/InstructionText.js';
-import AboutUs from '../components/landing/AboutUs';
-import Carousel from '../components/landing/Carousel';
-
+import Instructions from '../components/landing/Instructions';
 
 class LandingPage extends Component {
   constructor(props) {
@@ -28,8 +24,8 @@ class LandingPage extends Component {
       <div className="ui compact" id="stuck" >
         
         <div style={{ textAlign: 'center', color: 'white' }}>
-          <button onClick={this.handleClick} className="ui sticky" style={{ backgroundColor: 'orange' }} >
-            <h3>SIGNIN</h3>
+          <button onClick={this.handleClick} className="ui sticky button" >
+            Sign In
           </button>
         </div>
         
@@ -38,27 +34,12 @@ class LandingPage extends Component {
           <h1 style={{ fontSize: '3.125rem', marginTop: '22rem', marginBottom: '1rem', fontWeight: '300' }} >Introducing Spread Out</h1>
           <h3 style={{ fontSize: '1.563rem', fontWeight: '300' }} >
             Your friendly free app connecting foodies and travelers in communal mealshares</h3>
-          <button onClick={this.handleClick} style={{ backgroundColor: 'orange' }} >
-            <h3>Learn More</h3>
+          <button onClick={this.handleClick} className="ui button">
+            Learn More
           </button>
         </section>
-
-        <div className="ui three column doubling stackable grid container" style={{ textAlign: 'center', height: '250', verticalAlign: 'center', margin: '100' }} >
-          { InstructionText.map(el => 
-            <InstructionItem key={el.s1Step}
-              s1Source={el.s1Source} 
-              s1Step={el.s1Step} 
-              s2Header={el.s2Header}
-              s2Text={el.s2Text} 
-            />
-          )}
-        </div>
-
+        <Instructions />
         <div className="ui divider"></div>
-        <h1 className="ui centered">Our Team</h1>
-        <Carousel />
-        <AboutUs className="test" />
-
       </div>
     );
   }
