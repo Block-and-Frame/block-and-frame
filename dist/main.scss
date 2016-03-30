@@ -4,7 +4,6 @@ $color2: #FF5252;
 $color3: #EF9A9A;
 
 body {
-	background-color: radial-gradient(20px 20px at 20px 30px, red, yellow, green);
 	font-family: Roboto, sans-serif;
 	font-weight: 100;
 	line-height: 1;
@@ -15,7 +14,7 @@ body {
 	margin-right: 1.5em;
 }
 
-.main.container {
+.main.container { 
 	margin-top: 7em;
 }
 
@@ -39,6 +38,7 @@ body {
 .instructions {
 	position: relative;
 	min-height: 15em;
+	width: 50em;
 	vertical-align: center;
 	text-align: center;
 	.instruction {
@@ -56,9 +56,9 @@ body {
 
 .about {
 	margin: 3rem;
-	padding: 1rem 8rem 1rem 8rem;
+	padding: 1rem 5rem 1rem 8rem;
 	.divider {
-		margin: 3em;
+		margin: 2em;
 	}
 }
 // Carousel
@@ -154,8 +154,8 @@ body {
 }
 
 .instructions img {
-		width: 150px;
-		height: 150px;
+	width: 150px;
+	height: 150px;
 }
 
 @mixin transform ($opacity, $direction, $amount...) {
@@ -172,7 +172,7 @@ body {
 		 a.info { opacity: 0; transition: all 0.2s ease-in-out; }
 	}
 	.overlay:hover {
-		 img { @include transform (scale, 1,1) }
+		 img { @include transform (scale, 2,1) }
 		 .mask { opacity: 1; }
 		 h2, p, a.info { @include transform(translateY, 0px, 1); }
 		 p { transition-delay: 0.1s; }
@@ -194,8 +194,8 @@ body {
 		overflow: hidden;
 		position: relative;
 		text-align: center;
-		box-shadow: 1px 1px 2px #e6e6e6;
-		background: #fff url(https://s3.amazonaws.com/spreadout-img/bgimg.jpg) no-repeat center center;
+		box-shadow: 3px 1px 2px #e6e6e6;
+		background: green url('https://s3.amazonaws.com/spreadout-img/LandingPage/net.png');
 		.mask { width: 11em; height: 11rem; position: absolute; top: 0; left: 0; };
 	}
 	.view img {
@@ -204,17 +204,34 @@ body {
 	}
 }
 
+@mixin radial-gradient($from, $to) {
+	background: -moz-radial-gradient(center, circle cover, $from 0%, $to 100%);
+	background: -webkit-gradient(radial, top right, 0px, center center, 100%, color-stop(0%, $from), color-stop(100%, $to));
+	background: -webkit-radial-gradient( top right, circle cover, $from 0%, $to 50%);
+	background: -o-radial-gradient(center, circle cover, $from 0%, $to 100%);
+	background: -ms-radial-gradient(center, circle cover, $from 0%, $to 100%);
+	background: radial-gradient(center, circle cover, $from 0%, $to 100%);
+	background-color: $from;
+}
+
+.radial {
+	@include radial-gradient(#555A5F, #000000);
+}
+
+
+
 $color9: white;
 $color10: #00ff40;
-$color11: adjust-color($color10,$lightness:20%);
-$color12: desaturate($color11, 75%);
+$color11: adjust-color($color10,$lightness:25%);
+$color12: desaturate($color11, 85%);
 
 .splash {
 	position: relative;
 	width: 100%;
 	height: 38em;
-	background: url('https://s3.amazonaws.com/spreadout-img/LandingPage/net.png');
-	// background-color: $color9 
+	// background-image: 'https://s3.amazonaws.com/spreadout-img/LandingPage/net.png');
+	@include radial-gradient(#39FF58, #166322);
+	// @include background-image(radial-gradient(45px 45px, cyan 10px, dodgerblue 30px));
 }
 #p1 {
 	height: 20em;
