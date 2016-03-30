@@ -78,9 +78,18 @@ class UserProfile extends React.Component {
     userHelpers.updateUser(this.state)
     .then((user) => {
       console.log(user);
-      this.setState({ success: true });
+      this.setState({
+        success: true,
+        duplicateEmail: false,
+      });
     })
     .catch((err) => {
+      if (err.data.constraint === 'users_email_unique') {
+        this.setState({
+          success: false,
+          duplicateEmail: true,
+        });
+      }
       console.log(err);
     });
   }
@@ -131,7 +140,10 @@ class UserProfile extends React.Component {
               onProfileSubmit={this.handleProfileSubmit}
               preventDefaultSubmit={this.preventDefaultSubmit}
             />
-            <EditSuccess success={this.state.success} />
+            <EditSuccess
+              success={this.state.success}
+              duplicateEmail={this.state.duplicateEmail}
+            />
           </div>
         </div>
       </div>
