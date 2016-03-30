@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AboutSpreadOut from '../components/about/AboutSpreadOut';
 import AboutUs from '../components/about/AboutUs';
+import Menubar from '../components/Menubar';
 
 class About extends Component {
   constructor(props) {
@@ -10,11 +11,14 @@ class About extends Component {
   }
   render() {
     return (
-      <div className="about">
-        <div className="ui container">
-          <AboutSpreadOut />
+      <div>
+        <Menubar />
+        <div className="about">
+          <div className="ui container">
+            <AboutSpreadOut />
+          </div>
+          <AboutUs />
         </div>
-        <AboutUs />
       </div>
     );
   }

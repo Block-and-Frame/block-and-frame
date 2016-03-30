@@ -27,7 +27,6 @@ import UniqueEvent from './containers/UniqueEvent';
 import LandingPage from './containers/LandingPage';
 import About from './containers/About';
 
-
 // TODO: Index Route may change - whatever we want to render
 // on visiting the site home path '/'
 const routes = (

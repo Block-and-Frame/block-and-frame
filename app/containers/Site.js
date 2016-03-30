@@ -13,7 +13,9 @@ class Site extends React.Component {
   render() {
     return (
       <div>
-        {this.props.children}
+        <div>
+          {this.props.children}
+        </div>
       </div>
     );
   }

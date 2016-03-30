@@ -17,11 +17,11 @@ class Instructions extends Component {
     return (
       <div className="ui three column doubling stackable grid container instructions" >
         { InstructionText.map(el => 
-          <InstructionItem key={el.s1Step}
-            s1Source={el.s1Source} 
-            s1Step={el.s1Step} 
-            s2Header={el.s2Header}
-            s2Text={el.s2Text} 
+          <InstructionItem key={el.step}
+            imgSource={el.imgSource} 
+            step={el.step} 
+            header={el.header}
+            txt={el.txt} 
           />
         )}
       </div>
