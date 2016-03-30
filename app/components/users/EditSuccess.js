@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const EditSuccess = ({ success }) => {
+const EditSuccess = ({ success, duplicateEmail }) => {
   if (success) {
     return (
       <div className="ui success message">
@@ -11,6 +11,15 @@ const EditSuccess = ({ success }) => {
         <Link className="small" to={'/profile'} >
           Visit profile.
         </Link>
+      </div>
+    );
+  }
+  if (duplicateEmail) {
+    return (
+      <div className="ui negative message">
+        <div className="ui header">
+          Email already in use!
+        </div>
       </div>
     );
   }

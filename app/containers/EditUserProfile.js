@@ -1,5 +1,6 @@
 import React from 'react';
 import userHelpers from '../utils/userHelpers';
+import authHelpers from '../utils/authHelpers';
 import MenuBar from '../components/MenuBar';
 import UserProfileForm from '../components/users/UserProfileForm';
 import ImageUpload from '../components/users/Uploader';
@@ -76,10 +77,19 @@ class UserProfile extends React.Component {
   handleProfileSubmit() {
     userHelpers.updateUser(this.state)
     .then((user) => {
-      console.log('user after PUT', user);
-      this.setState({ success: true });
+      console.log(user);
+      this.setState({
+        success: true,
+        duplicateEmail: false,
+      });
     })
     .catch((err) => {
+      if (err.data.constraint === 'users_email_unique') {
+        this.setState({
+          success: false,
+          duplicateEmail: true,
+        });
+      }
       console.log(err);
     });
   }
@@ -87,7 +97,9 @@ class UserProfile extends React.Component {
   handleDeleteUser() {
     userHelpers.deleteUser().
     then((info) => {
-      console.log('info from server: ', info);
+      console.log(info);
+      authHelpers.logout();
+      this.context.router.push('/signup');
     })
     .catch((err) => {
       console.log(err);
@@ -128,7 +140,10 @@ class UserProfile extends React.Component {
               onProfileSubmit={this.handleProfileSubmit}
               preventDefaultSubmit={this.preventDefaultSubmit}
             />
-            <EditSuccess success={this.state.success} />
+            <EditSuccess
+              success={this.state.success}
+              duplicateEmail={this.state.duplicateEmail}
+            />
           </div>
         </div>
       </div>
