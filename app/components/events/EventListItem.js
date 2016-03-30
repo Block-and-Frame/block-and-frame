@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import moment from 'moment';
+import UniqueMapView from '../components/events/UniqueMapView';
 
 class Event extends React.Component {
   render() {
@@ -13,6 +14,7 @@ class Event extends React.Component {
     
     return (
       <div className="ui large list">
+        <UniqueMapView />
         <div className="item">
           <div className="ui padded text container raised segment">
             <Link to={`/${this.props.id}`} className="header">{this.props.name}</Link>
