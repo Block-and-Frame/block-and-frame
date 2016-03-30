@@ -9,11 +9,9 @@ class SplashImage extends Component {
   render() {
     return (
       <div className="splash">
-          <img id="1" src="" />
-          <img id="2" src="" />
-          <img id="3" src="" />
-          <img id="4" src="" />
-          <img id="5" src="" />
+        <img id="p1" src="https://s3.amazonaws.com/spreadout-img/LandingPage/img1.png" />
+        <img id="t1" src="https://s3.amazonaws.com/spreadout-img/LandingPage/t1.png" />
+        <img id="t2" src="https://s3.amazonaws.com/spreadout-img/LandingPage/t3.png" />
       </div>
     );
   }

@@ -33,7 +33,7 @@ class LandingPage extends Component {
           <div className="ui fixed menu">
             <div className="ui container">
               <a href="#" className="header item">
-                <img className="logo" src="assets/images/logo.png" />
+                <img className="logo" src="" />
                 SpreadOut
               </a>
               <a onClick={this.signinClick} href="#" className="item">Sign In</a>
@@ -49,11 +49,13 @@ class LandingPage extends Component {
         <SplashImage />
         <div className="ui main text container">
           <Instructions />
-          <h1 className="ui header">Introducing SpreadOut</h1>
+        </div>
+        <div className="ui main text container">
+          <h1 className="ui header">Introducing Spread Out</h1>
           <p>This is a basic fixed menu template using fixed size containers.</p>
-          <p>A text container is used for the main container, which is useful for single column layouts</p>
           <p>This is a basic fixed menu template using fixed size containers.</p>
-          <p>A text container is used for the main container, which is useful for single column layouts</p>  
+          <p>This is a basic fixed menu template using fixed size containers.</p>
+          <p>This is a basic fixed menu template using fixed size containers.</p>  
         </div>
       </div>
     );
