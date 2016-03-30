@@ -73,17 +73,20 @@ class UserProfile extends Component {
           <div className="sixteen wide column"><br /></div>
           <div className="four wide column">
           <UserInfo user={this.state} avatarURL={this.state.avatarURL} />
-          
+
           </div>
           <div className="nine wide column">
             <div className="ui centered large header">My Spreads</div>
             <div className="ui segment">
-              <UserEventList events={this.state.events} />
+              <UserEventList
+                events={this.state.events}
+                userId={this.state.id}
+              />
             </div>
           </div>
-          
+
           <div className="two wide column">
-          <UserPicContainer 
+          <UserPicContainer
             userPics={this.state.allThisUsersInstaPics}
           />
           </div>
@@ -101,14 +104,14 @@ class UserProfile extends Component {
     //           ) {
     //           return (
     //             <div className="">
-    //               <InstaUserPics 
+    //               <InstaUserPics
     //                 key={index}
-    //                 data={object} 
+    //                 data={object}
     //               />
     //             </div>
     //           );
     //         }
-    //       })} 
+    //       })}
 
 export default UserProfile;
 
