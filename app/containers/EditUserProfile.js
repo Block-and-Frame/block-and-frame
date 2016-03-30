@@ -4,9 +4,6 @@ import MenuBar from '../components/MenuBar';
 import UserProfileForm from '../components/users/UserProfileForm';
 import ImageUpload from '../components/users/Uploader';
 import EditSuccess from '../components/users/EditSuccess';
-//
-import authHelpers from '../utils/authHelpers';
-//
 
 // TODO: Confirm profile deletion, msg about success, redirect user to home.
 
@@ -35,15 +32,6 @@ class UserProfile extends React.Component {
     this.handleDeleteUser = this.handleDeleteUser.bind(this);
     this.preventDefaultSubmit = this.preventDefaultSubmit.bind(this);
   }
-
-  // componentWillMount() {
-  //   // instagram sign in.
-  //   // server sends jwt and id as query string
-  //   const { token, userId } = this.props.location.query;
-  //   if (token && userId) {
-  //     authHelpers.storeToken(token, userId);
-  //   }
-  // }
 
   componentDidMount() {
     userHelpers.getCurrentUserData()
