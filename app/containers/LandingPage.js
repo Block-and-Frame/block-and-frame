@@ -30,7 +30,7 @@ class LandingPage extends Component {
     return (
       <div>
         <div className="landing">
-          <div className="ui fixed menu">
+          <div className="ui fixed inverted menu">
             <div className="ui container">
               <a href="#" className="header item">
                 <img className="logo" src="" />
@@ -49,13 +49,6 @@ class LandingPage extends Component {
         <SplashImage />
         <div className="ui main text container">
           <Instructions />
-        </div>
-        <div className="ui main text container">
-          <h1 className="ui header">Introducing Spread Out</h1>
-          <p>This is a basic fixed menu template using fixed size containers.</p>
-          <p>This is a basic fixed menu template using fixed size containers.</p>
-          <p>This is a basic fixed menu template using fixed size containers.</p>
-          <p>This is a basic fixed menu template using fixed size containers.</p>  
         </div>
       </div>
     );
