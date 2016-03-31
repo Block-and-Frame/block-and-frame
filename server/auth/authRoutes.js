@@ -25,7 +25,7 @@ router.get('/instagram/callback', (req, res, next) => {
     // Create jwt and send to front-end through url to access routes via jwt strategy
     const token = jwt.sign(user, process.env.SECRET, { expiresIn: 10080 });
     const userId = user.get('id');
-    res.redirect(`/events?token=JWT+${token}&userId=${userId}`);
+    res.redirect(`/events?token=JWT+${token}&userId=${userId}&instaUser=true`);
   })(req, res, next);
 });
 

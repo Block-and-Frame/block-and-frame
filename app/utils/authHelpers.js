@@ -1,7 +1,11 @@
 const authHelpers = {
-  storeToken(token, userId) {
+  storeToken(token, userId, instaUser) {
     window.localStorage.setItem('token', token);
     window.localStorage.setItem('id', userId);
+
+    if (instaUser) {
+      window.localStorage.setItem('instaUser', instaUser);
+    }
   },
 
   logout() {

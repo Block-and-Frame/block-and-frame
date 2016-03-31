@@ -134,16 +134,21 @@ class UniqueEvent extends React.Component {
         joinable: tempJoinable,
         attendants: tempAttendants,
       });
-      instaHelpers.getUniqueTagPics(this.state.hashtag)
-      .then((tagObject) => {
-        this.setState({
-          tagArray: tagObject.data.data.data,
+
+      if (window.localStorage.instaUser) {
+        instaHelpers.getUniqueTagPics(this.state.hashtag)
+        .then((tagObject) => {
+          // console.log('tag data', tagObject.data.data.data);
+          this.setState({
+            tagArray: tagObject.data.data.data,
+          });
         });
-      });
+      }
     })
     .catch((error) => {
-      console.log(error);
+      console.log('catches err in eventHelpers.getEventbyId ', error);
     });
+
     setTimeout(this.loadMarker, 500);
     setTimeout(this.determineCenter, 750);
   }
@@ -217,10 +222,6 @@ class UniqueEvent extends React.Component {
   }
 
   render() {
-    // console.log('host id: ', this.state.hostId);
-    console.log('RENDERING ', this.state.contributions);
-    console.log('state at page load unique event', this.state);
-
     this.state.contributions = this.state.contributions || [];
     return (
     <div>
@@ -287,9 +288,10 @@ class UniqueEvent extends React.Component {
             <Comments />
           </div>
           <div className="two wide column">
-            <HashTagPicsContainer
-              hashTagPics = {this.state.tagArray}
-            />
+            <HashTagPicsContainer 
+              hashTagPics = {this.state.tagArray || []}
+              hashtag = {this.state.hashtag}
+            /> 
           </div>
         </div>
       </div>

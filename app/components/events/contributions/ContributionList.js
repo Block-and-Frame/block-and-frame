@@ -32,7 +32,7 @@ class ContributionList extends Component {
           </div>
           <p>Just check the box under a contribution.</p>
         </div> : null}
-        <div className="ui segment">
+        <div className="ui raised segment">
           <div className="ui header medium">{openContributions ? 'Bring Something!' : 'What people are bringing'}</div>
 
           {this.props.isAttending && openContributions ?
@@ -41,16 +41,16 @@ class ContributionList extends Component {
           /> : null}
 
           <div className="ui divider"></div>
-          <div className="ui cards">
-            {this.props.contributions.map((contrib, index) =>
-              <Contribution
-                key={index}
-                {...contrib}
-                ref={`contribution-${index}`}
-                _onCheckBoxClick={this.props.onCheckBoxClick}
-              />
-            )}
-          </div>
+            <div className="ui centered cards">
+              {this.props.contributions.map((contrib, index) =>
+                <Contribution
+                  key={index}
+                  {...contrib}
+                  ref={`contribution-${index}`}
+                  _onCheckBoxClick={this.props.onCheckBoxClick}
+                />
+              )}
+            </div>
         </div>
       </div>
     );
@@ -58,8 +58,4 @@ class ContributionList extends Component {
 }
 
 module.exports = ContributionList;
-// Above, the ...spread operater is used instead of:
-// bringer={contrib.bringer}
-// item={contrib.item}
-// notes={contrib.notes}
-// index={contrib.index}
+

@@ -24,7 +24,13 @@ const UniqueEventView = (props) => {
       />
     );
   }
-
+  const dateTime = moment(props.date)
+    .set({
+      hour: props.time.split(':')[0],
+      minute: props.time.split(':')[1],
+    })
+    .add(1, 'day'); // not sure why a day has to be added
+    
   return (
     <div className="ui items">
       <div className="eventName ui item">

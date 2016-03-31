@@ -17,7 +17,7 @@ class Event extends React.Component {
   }
 
   componentWillMount() {
-    if (this.props.hashtag) {
+    if (this.props.hashtag && window.localStorage.instaUser) {
       instaHelpers.getUniqueTagPics(this.props.hashtag)
       .then((tagObject) => {
         const data = tagObject.data.data.data;
@@ -44,8 +44,15 @@ class Event extends React.Component {
   }
 
   render() {
+    const dateTime = moment(this.props.date)
+    .set({
+      hour: this.props.time.split(':')[0],
+      minute: this.props.time.split(':')[1],
+    })
+    .add(1, 'day'); // not sure why a day has to be added
+    
     return (
-          <div className="ui green centered card">
+          <div className="ui black centered card">
             <div className="content">
               <div className="right floated meta">
                 <div>{moment(`${this.props.date} ${this.props.time}`).format('MMMM Do YYYY, h:mm:ss a')}</div>

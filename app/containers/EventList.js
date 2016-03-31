@@ -23,11 +23,10 @@ class EventList extends React.Component {
   componentDidMount() {
     // When signing in with instagram, back end will redirect here with token and id in url
     // Check if user arrived here with token and id and store it to log in
-    const { token, userId } = this.props.location.query;
+    const { token, userId, instaUser } = this.props.location.query;
     if (token && userId) {
-      authHelpers.storeToken(token, userId);
+      authHelpers.storeToken(token, userId, instaUser);
     }
-
     eventHelpers.getAllEvents()
     .then((response) => {
       this.setState({
