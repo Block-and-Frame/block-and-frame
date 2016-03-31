@@ -1,19 +1,79 @@
-$color: white;
+//////////////////////      MIXINS
+@mixin centerer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin transform ($opacity, $direction, $amount...) {
+   transform: #{$direction($amount)};
+   opacity: $opacity;
+}
+
+@mixin radial-gradient($from, $to) {
+  background: -moz-radial-gradient(center, circle cover, $from 0%, $to 100%);
+  background: -webkit-gradient(radial, top right, 0px, center center, 100%, color-stop(0%, $from), color-stop(100%, $to));
+  background: -webkit-radial-gradient( top right, circle cover, $from 0%, $to 105%);
+  background: -o-radial-gradient(center, circle cover, $from 0%, $to 100%);
+  background: -ms-radial-gradient(center, circle cover, $from 0%, $to 100%);
+  background: radial-gradient(center, circle cover, $from 0%, $to 100%);
+  background-color: $from;
+}
+
+@keyframes carousel {
+  0%,
+  17.5% {
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+  }
+  19.0625% {
+    filter: blur(2px);
+  }
+  20.625%, 38.125% {
+    transform: translate3d(-20%, 0, 0);
+    filter: blur(0);
+  }
+  39.6875% {
+    filter: blur(2px);
+  }
+  41.25%, 58.75% {
+    transform: translate3d(-40%, 0, 0);
+    filter: blur(0);
+  }
+  60.3125% {
+    filter: blur(2px);
+  }
+  61.875%, 79.375% {
+    transform: translate3d(-60%, 0, 0);
+    filter: blur(0);
+  }
+  80.9375% {
+    filter: blur(2px);
+  }
+  82.5%, 100% {
+    transform: translate3d(-80%, 0, 0);
+    filter: blur(0);
+  }
+}
+
+////////////////////////////////////////////////////////
+$color0: white;
+$color1: #558B2F;
+$color2: #FF5252;
+$color3: #EF9A9A;
 
 body {
-  background-color: $color;
   font-family: Roboto, sans-serif;
   font-weight: 100;
   line-height: 1;
-  // word-wrap: break-word;
 }
-
 
 .ui.menu .item img.logo {
   margin-right: 1.5em;
 }
 
-.main.container {
+.main.container { 
   margin-top: 7em;
 }
 
@@ -24,7 +84,7 @@ body {
 .ui.footer.segment {
   margin: 10em 0em 0em;
   padding: 3em 0em;
-  background-color: dimgrey;
+  // background-color: dimgrey;
   button {
     a {
       .github {
@@ -34,12 +94,10 @@ body {
   }
 }
 
-
-
-
 .instructions {
   position: relative;
-  min-height: 500px;
+  min-height: 3em;
+  width: 80em;
   vertical-align: center;
   text-align: center;
   .instruction {
@@ -49,21 +107,23 @@ body {
     }
   }
 }
-
+.popup {
+  position: absolute;
+  margin-top: 10em;
+  z-index: 2;
+}
 .about {
   margin: 3rem;
-  padding: 1rem 8rem 1rem 8rem;
+  padding: 1rem 5rem 1rem 8rem;
   .divider {
-    margin: 3em;
+    margin: 2em;
   }
 }
 
 .carousel {
-    overflow: hidden;
-    width: 100%;
-    text-align: center;
-}
-
+  overflow: hidden;
+  width: 100%;
+  text-align: center;
   .carousel__panes {
     padding: 0;
     list-style: none;
@@ -74,8 +134,7 @@ body {
     -webkit-animation: carousel 12s alternate infinite;
     -moz-animation: carousel 12s alternate infinite;
     animation: carousel 12s alternate infinite;
-  }
-    
+  }   
   .carousel__pane {
     padding: 0px 30px 0px 30px;
     position: relative;
@@ -86,54 +145,6 @@ body {
     h3, i {
       vertical-align: middle;
     }
-
-  }
-
-@keyframes carousel {
-  0%,
-  17.5% {
-    transform: translate3d(0, 0, 0);
-    filter: blur(0);
-  }
-
-  19.0625% {
-    filter: blur(2px);
-  }
-
-  20.625%,
-  38.125% {
-    transform: translate3d(-20%, 0, 0);
-    filter: blur(0);
-  }
-
-  39.6875% {
-    filter: blur(2px);
-  }
-
-  41.25%,
-  58.75% {
-    transform: translate3d(-40%, 0, 0);
-    filter: blur(0);
-  }
-
-  60.3125% {
-    filter: blur(2px);
-  }
-
-  61.875%,
-  79.375% {
-    transform: translate3d(-60%, 0, 0);
-    filter: blur(0);
-  }
-
-  80.9375% {
-    filter: blur(2px);
-  }
-
-  82.5%,
-  100% {
-    transform: translate3d(-80%, 0, 0);
-    filter: blur(0);
   }
 }
 
@@ -154,6 +165,90 @@ body {
   display: inline-block
 }
 
+.landing {
+  position: relative;
+  .main.container {
+    margin-top: 7em;
+  }
+}
+
+.instructions img {
+  width: 150px;
+  height: 150px;
+}
+
+.instruction{
+  .overlay {
+     img { transition: all 0.2s linear; }
+     .mask { opacity: 0; background-color: rgba( 75, 168, 175, 0.9); transition: all 0.4s ease-in-out; }
+     h2 { @include transform(translateY, -100px, 0); transition: all 0.2s ease-in-out; }
+     p { @include transform(translateY, 100px, 0); transition: all 0.2s linear; }
+     a.info { opacity: 0; transition: all 0.2s ease-in-out; }
+  }
+  .overlay:hover {
+     img { @include transform (scale, 2,1) }
+     .mask { opacity: 1; }
+     h2, p, a.info { @include transform(translateY, 0px, 1); }
+     p { transition-delay: 0.1s; }
+     a.info { transition-delay: 0.2s; }
+  } 
+  @function calculateRem($size) {
+    $remSize: $size / 16px;
+    @return $remSize * 1rem;
+  }
+  @mixin font-size($size) {
+    font-size: $size;
+    font-size: calculateRem($size);
+  }
+  .view {
+    width: 12rem;
+    height: 12rem;
+    margin: 1rem;
+    border: 0.5rem solid #fff;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    box-shadow: 3px 1px 2px #e6e6e6;
+    background: green url('https://s3.amazonaws.com/spreadout-img/LandingPage/net.png');
+    .mask { width: 11em; height: 11rem; position: absolute; top: 0; left: 0; };
+  }
+  .view img {
+    display: inline;
+    position: relative;
+  }
+}
+
+$color9: white;
+$color10: #166322;
+$color11: adjust-color($color10,$lightness:25%);
+$color12: desaturate($color11, 85%);
+
+.splash {
+  position: relative;
+  width: 100%;
+  height: 38em;
+  @include radial-gradient(#39FF58, $color12);
+  .splashBlurb {
+    position: absolute;
+    @include centerer;
+    h1, p {
+      color: white;
+    }
+  }
+}
+#p1 {
+  height: 20em;
+  position: absolute;
+  left: 0em;
+  top: 12em;
+}
+#t1 {
+  position: absolute;
+  height: 5em;
+  left: 75%;
+  top: 33%;
+} 
+
 span#bigger {
   font-size: 20px;
 }
@@ -164,17 +259,7 @@ span#bigger {
   }
 }
 
-
-
-
-
-
-
-
-
-
 // STICKY FOOTER
-
 * {
   margin: 0;
 }
@@ -197,7 +282,6 @@ html, body {
 // STICKY FOOTER FOR SMALL SCREENS
 
 @media screen and (max-width: 768px) {
-
   #footer {
    height: 638px !important;
   }

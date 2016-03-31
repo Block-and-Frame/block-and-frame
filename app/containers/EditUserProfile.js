@@ -44,7 +44,6 @@ class UserProfile extends React.Component {
         bio: user.data.bio,
         location: user.data.location,
         isTraveling: user.data.is_traveling,
-        avatarId: user.data.avatar_id,
         instagramProfilePic: user.data.instagram_profile_pic,
         instagram: user.data.instagram_username,
       });
@@ -123,7 +122,6 @@ class UserProfile extends React.Component {
         <div className="ui raised very padded text container segment">
           <div className="ui container">
             <ImageUpload
-              avatarId={this.state.avatarId}
               instagramProfilePic={this.state.instagramProfilePic}
             />
             <UserProfileForm
