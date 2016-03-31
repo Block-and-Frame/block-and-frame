@@ -1,11 +1,12 @@
 import React from 'react';
 
-const UserInfo = ({ user, avatarURL }) => {
+const UserInfo = ({ user, avatarURL, instagramProfilePic }) => {
+  console.log(user);
   return (
     <div>
       <div className="ui card">
         <div className="image">
-          <img src={avatarURL} />
+          <img src={avatarURL || instagramProfilePic || 'https://s3.amazonaws.com/spreadout-img/avatar.png'} />
           
         </div>
         <div className="content">

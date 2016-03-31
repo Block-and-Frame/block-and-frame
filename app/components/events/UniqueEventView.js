@@ -18,20 +18,12 @@ const UniqueEventView = (props) => {
   } else if (props.joinable) {
     button = (
       <JoinEventButton
-        eventId={props.eventId} 
+        eventId={props.eventId}
         contributions={props.contributions}
         handleJoinEventWithContributions={props.handleJoinEventWithContributions}
       />
     );
   }
-
-  const dateTime = moment(props.date)
-    .set({
-      hour: props.time.split(':')[0],
-      minute: props.time.split(':')[1],
-    })
-    .add(1, 'day'); // not sure why a day has to be added
-    
 
   return (
     <div className="ui items">
@@ -47,7 +39,7 @@ const UniqueEventView = (props) => {
 
       <div className="date item">
         <div className="ui small header">
-          <p>{dateTime.format('MMMM Do YYYY, h:mm a')}</p>
+          <p>{moment(`${props.date} ${props.time}`).format('MMMM Do YYYY, h:mm a')}</p>
         </div>
       </div>
 

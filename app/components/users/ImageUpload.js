@@ -1,26 +1,26 @@
 import React from 'react';
 
-const ImageUpload = (props) => {
+const ImageUpload = ({ filename, avatarURL, handleSubmit, handleUploadClick }) => {
   return (
     <div className="ui compact segment">
       <img 
         id="test"
         className="ui small spaced rounded image"
-        src={props.avatarURL}
+        src={avatarURL}
       />
       <div className="ui divider" />
       
       <form onSubmit={(e) => {e.preventDefault(); }}>
         <button
           className="ui tiny button"
-          onClick={props.handleUploadClick}
+          onClick={handleUploadClick}
         >Select Profile Image
         </button>
         
         <div className="ui fitted hidden divider" />
         <div>
-          { /* show filename after image is selected */ props.filename && 
-            <div className="ui basic small label">{props.filename}</div>
+          { /* show filename after image is selected */ filename && 
+            <div className="ui basic small label">{filename}</div>
           }
         </div>
         
@@ -35,7 +35,7 @@ const ImageUpload = (props) => {
         />
         <button
           className="ui tiny button"
-          onClick={props.handleSubmit}
+          onClick={handleSubmit}
         >
           <i className="plus square icon"></i>
           Upload

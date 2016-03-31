@@ -4,21 +4,15 @@ import moment from 'moment';
 
 class UserEventListItem extends Component {
   render() {
-    const dateTime = moment(this.props.date)
-    .set({
-      hour: this.props.time.split(':')[0],
-      minute: this.props.time.split(':')[1],
-    })
-    .add(1, 'day'); // not sure why a day has to be added
-
     // Filter out users contributions
     const myContributions = this.props.contributions.filter((contribution) => {
       return contribution.bringer === String(this.props.userId);
     }).map((contribution) => {
-      return (<div className="item">{contribution.item}</div>);
+      return (<div className="ui hoizontal label">{contribution.item}</div>);
     });
 
     // Format tense of header
+    const dateTime = moment(`${this.props.date} ${this.props.time}`);
     let status = this.props.isHost ? 'host' : 'attend';
     status = moment() > dateTime ? `I ${status}ed` : `I'm going to ${status}`;
 
@@ -32,11 +26,12 @@ class UserEventListItem extends Component {
             </Link>
             {dateTime.fromNow()}
           </div>
-          <p className="extra">{this.props.location}</p>
+          <div className="extra">{this.props.location}</div>
+          <div>{this.props.hashtag}</div>
           {myContributions.length > 0 ?
             <div>
               <span>My contributions: </span>
-              <div className="ui horizontal bulleted list">{myContributions}</div>
+              <div className="ui horizontal list">{myContributions}</div>
             </div>
           : null}
         </div>

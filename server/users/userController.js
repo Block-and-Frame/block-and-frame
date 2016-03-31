@@ -24,7 +24,7 @@ module.exports = {
     .fetch({
       withRelated: ['events'],
       columns: [
-        'id', 'email', 'username', 'bio', 'location', 'is_traveling', 'instagram_id', 'instagram_token', 'instagram_username', 'instagram_profile_pic',
+        'id', 'email', 'username', 'bio', 'location', 'is_traveling', 'avatar_id', 'instagram_id', 'instagram_token', 'instagram_username', 'instagram_profile_pic',
       ],
     })
     .then((user) => {
@@ -157,7 +157,7 @@ module.exports = {
       Image.where({ id: user.attributes.avatar_id })
       .fetch()
       .then((image) => {
-       // res.json(image.attributes.avatar_url);
+        res.json(image.attributes.avatar_url);
       });
     })
     .catch((err) => {

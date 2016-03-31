@@ -7,36 +7,46 @@ class Uploader extends React.Component {
     super(props);
 
     this.state = {
+      avatarId: props.avatarId,
       avatarURL: 'https://s3.amazonaws.com/spreadout-img/avatar.png',
       filename: '',
       uploaded: false,
     };
 
+    this.getAvatar = this.getAvatar.bind(this);
     this.handleUploadClick = this.handleUploadClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.checkForInstagram = this.checkForInstagram.bind(this);
   }
 
   componentWillMount() {
-    const userId = window.localStorage.getItem('id');
+    this.getAvatar();
+  }
 
+  componentWillReceiveProps(nextProps) {
+    console.log('NEXT', nextProps);
+    if (nextProps.avatarId) {
+      this.setState({ avatarId: nextProps.avatarId });
+      this.getAvatar();
+    } else if (!this.state.uploaded && nextProps.instagramProfilePic) {
+      this.setState({ avatarURL: nextProps.instagramProfilePic });
+      // this.forceUpdate();
+    }
+  }
+
+  getAvatar() {
+    const userId = window.localStorage.getItem('id');
     // check for a saved profile photo
     imageHelpers.getUserAvatar(userId)
     .then((res) => {
       if (res.data.filepath) {
         // if found, set the state
         this.setState({ avatarURL: res.data.filepath });
+        // this.forceUpdate();
       }
     })
     .catch((err) => {
       console.log(err);
     });
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (!this.state.uploaded && nextProps.instagramProfilePic) {
-      this.setState({ avatarURL: nextProps.instagramProfilePic });
-    }
   }
 
   handleUploadClick() {
@@ -54,7 +64,6 @@ class Uploader extends React.Component {
       this.setState({ avatarURL: filepath });
       imageHelpers.saveAvatarURL(filepath)
       .then((res) => {
-        this.setState({ uploaded: true });
         console.log(res);
       })
       .catch((err) => {
@@ -63,18 +72,12 @@ class Uploader extends React.Component {
     });
   }
 
-  checkForInstagram() {
-    if (this.props.instagramProfilePic) {
-      this.setState({ avatarURL: this.props.instagramProfilePic });
-    }
-  }
-
   render() {
     return (
-      <ImageUpload
+      <ImageUpload 
         avatarURL={this.state.avatarURL}
-        handleUploadClick={this.handleUploadClick}
         filename={this.state.filename}
+        handleUploadClick={this.handleUploadClick}
         handleSubmit={this.handleSubmit}
       />
     );

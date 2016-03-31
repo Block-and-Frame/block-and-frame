@@ -70,6 +70,7 @@ const eventHelpers = {
       console.log(error);
     });
   },
+
   joinEvent(eventId, callback, host) {
     const token = window.localStorage.getItem('token');
     return axios({

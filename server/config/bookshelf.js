@@ -46,7 +46,7 @@ bookshelf.knex.schema.hasTable('events').then((exists) => {
       event.string('name', 100);
       event.string('location', 100);
       event.string('hashtag', 100);
-      event.date('date');
+      event.string('date', 12);
       event.time('time');
       event.string('coordinates', 100);
       event.string('description', 1000);

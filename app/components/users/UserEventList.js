@@ -10,22 +10,12 @@ class UserEventList extends Component {
       <div className="ui relaxed divided list">
         {
           this.props.events.sort((eventA, eventB) => {
-            eventA.dateTime = moment(eventA.date)
-            .set({
-              hour: eventA.time.split(':')[0],
-              minute: eventA.time.split(':')[1],
-            })
-            .add(1, 'day'); // not sure why a day has to be added
-            eventB.dateTime = moment(eventB.date)
-            .set({
-              hour: eventB.time.split(':')[0],
-              minute: eventB.time.split(':')[1],
-            })
-            .add(1, 'day'); // not sure why a day has to be added
+            const dateTimeA = moment(`${eventA.date} ${eventA.time}`);
+            const dateTimeB = moment(`${eventB.date} ${eventB.time}`);
 
-            if (eventA.dateTime > eventB.dateTime) {
+            if (dateTimeA > dateTimeB) {
               return -1;
-            } else if (eventA.dateTime < eventB.dateTime) {
+            } else if (dateTimeA < dateTimeB) {
               return 1;
             }
             return 0;

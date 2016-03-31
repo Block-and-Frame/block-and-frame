@@ -10,8 +10,7 @@ const CommentList = (props) => {
         {
           props.commentData.map((comment) => {
             return (
-              <Comment 
-                avatarURL={comment.avatarURL}
+              <Comment
                 username={comment.username}
                 timeCreated={moment(comment.timeCreated).calendar()}
                 text={comment.text}

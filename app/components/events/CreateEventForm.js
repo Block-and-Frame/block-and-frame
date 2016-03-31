@@ -122,7 +122,7 @@ class CreateEventForm extends Component {
 
           <div>
             {
-              this.props.missingItems.length === 0 ? null : 
+              this.props.missingItems.length === 0 ? null :
               <div className="ui negative message">
                 Please fill out the following forms:<br />
                   {

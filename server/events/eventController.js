@@ -95,8 +95,6 @@ const eventController = {
       if (!event) {
         res.sendStatus(404);
       } else {
-        // TODO this probably wont updated event properly
-        // Look at userController
         event.save(req.body);
       }
     })
@@ -131,7 +129,7 @@ const eventController = {
     emailInfo.userId = userId;
 
     userController.emailHost(emailInfo);
-    
+
     Event.fetchAndPopulate({ id: req.params.eventId })
     .then((event) => {
       event
