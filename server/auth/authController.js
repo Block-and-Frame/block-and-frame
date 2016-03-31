@@ -12,7 +12,6 @@ module.exports = {
       if (!user) {
         return res.status(500).end('Incorrect username or password.');
       }
-
       return user.comparePassword(password, user.get('password'))
       .then((isMatch) => {
         if (!isMatch) {
@@ -35,7 +34,6 @@ module.exports = {
     .fetch()
     .then((user) => {
       if (user) {
-        console.log('here');
         res.status(500).send('Error. User already exists.');
       }
       if (!user) {

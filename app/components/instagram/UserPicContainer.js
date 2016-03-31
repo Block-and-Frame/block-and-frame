@@ -16,8 +16,7 @@ const UserPicContainer = (props) => {
           pic.tags &&
           /*  here is where can set #tag we want users to show on profile: */
           pic.tags.indexOf(tag1) >= 0 ||
-          pic.tags.indexOf(tag2) >= 0 || 
-          pic.tags.indexOf(tag3) >= 0) {
+          pic.tags.indexOf(tag2) >= 0) {
           return (
             <UserPic
               key={index}

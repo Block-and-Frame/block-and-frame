@@ -1,44 +1,31 @@
-const express = require('express');
+const jwt = require('jsonwebtoken');
+const passport = require('passport');
+const router = require('express').Router();
 const authController = require('./authController');
 
-
-const passport = require('passport');
-
-const router = express.Router();
-
+// Standard authentication routes
 router.post('/signin', authController.signin);
 router.post('/signup', authController.signup);
-// this has to do with the instagram session:
 
-// My try:
-router.get('/instagram',
-  passport.authenticate('instagram', { session: false }),
-  (req, res) => {
-    // The request will be redirected to Instagram for authentication, so this
-    // function will not be called.
-  });
-
-const jwt = require('jsonwebtoken');
-
+// Instagram authentication
+router.get('/instagram', passport.authenticate('instagram', { session: false }));
 router.get('/instagram/callback', (req, res, next) => {
   passport.authenticate('instagram', {
     scope: ['public_content'],
-    failureRedirect: '/' },
+    failureRedirect: '/signup' },
   (err, user, info) => {
-    console.log('\tinside callback thingy')
-    console.log('this is user', user);
-    console.log('this is info', info);
     if (err) {
-      console.log('error', err);
+      console.log(err);
       return next(err);
     }
     if (!user) {
-      console.log('no user!');
-      return res.redirect('/');
+      console.log('Instagram Callback: User not found.');
+      return res.redirect('/signup');
     }
+    // Create jwt and send to front-end through url to access routes via jwt strategy
     const token = jwt.sign(user, process.env.SECRET, { expiresIn: 10080 });
     const userId = user.get('id');
-    res.redirect(`/signin?token=${token}&userId=${userId}`);
+    res.redirect(`/events?token=JWT+${token}&userId=${userId}`);
   })(req, res, next);
 });
 

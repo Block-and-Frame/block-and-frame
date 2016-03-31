@@ -9,7 +9,7 @@ const UniqueMapView = (props) => {
           <div
             {...props}
             style={{
-              height: '250px',
+              height: '350px',
               width: '100%',
             }}
           />
@@ -18,6 +18,7 @@ const UniqueMapView = (props) => {
           <GoogleMap
             defaultZoom={13}
             center={props.center}
+            options={{ disableDefaultUI: true }}
           >
             {props.markers.map((marker) => {
               return (

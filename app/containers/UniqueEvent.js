@@ -10,7 +10,6 @@ import ContributionList from '../components/events/contributions/ContributionLis
 import UserInfo from '../components/users/UserInfo';
 import HashTagPicsContainer from '../components/instagram/HashTagPicsContainer';
 import instaHelpers from '../utils/instaHelpers';
-import Comments from '../components/events/comments/Comments';
 
 class UniqueEvent extends React.Component {
   constructor(props) {
@@ -120,7 +119,6 @@ class UniqueEvent extends React.Component {
         joinable: tempJoinable,
         attendants: tempAttendants,
       });
-      console.log('state at page load unique event', this.state);
       instaHelpers.getUniqueTagPics(this.state.hashtag)
       .then((tagObject) => {
         // console.log('tag data', tagObject.data.data.data);
@@ -184,6 +182,7 @@ class UniqueEvent extends React.Component {
   }
 
   loadMarker() {
+    console.log('state at page load unique event', this.state);
     const location = {};
     const coordinates = this.state.coordinates;
     let { markers } = this.state;
@@ -266,12 +265,9 @@ class UniqueEvent extends React.Component {
               :
               null
             }
-            <div className="ui hidden divider"></div>
-            <Comments />
           </div>
           <div className="two wide column">
-            <HashTagPicsContainer
-              hashtag = {this.state.hashtag} 
+            <HashTagPicsContainer 
               hashTagPics = {this.state.tagArray}
             /> 
           </div>

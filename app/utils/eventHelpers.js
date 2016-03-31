@@ -120,6 +120,14 @@ const eventHelpers = {
       headers: { Authorization: token },
     });
   },
+  findCreator(usersArray) {
+    // .forEach here returns undefined, unfortunately
+    for (let i = 0; i < usersArray.length; i++) {
+      if (usersArray[i]._pivot_is_creator === true) {
+        return usersArray[i];
+      }
+    }
+  },
 };
 
 export default eventHelpers;

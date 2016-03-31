@@ -1,7 +1,5 @@
-const express = require('express');
+const router = require('express').Router();
 const instaController = require('./instaController');
-
-const router = express.Router();
 
 router.post('/getUserPics', instaController.getUserPics);
 router.post('/getUniqueTagPics', instaController.getUniqueTagPics);

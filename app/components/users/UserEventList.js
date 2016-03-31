@@ -38,7 +38,10 @@ class UserEventList extends Component {
                 isHost={event._pivot_is_creator}
                 date={event.date}
                 time={event.time}
-                id={event.id}
+                eventId={event.id}
+                userId={this.props.userId}
+                hashtag={event.hashtag}
+                contributions={event.toBring.contributions}
               />
             );
           })

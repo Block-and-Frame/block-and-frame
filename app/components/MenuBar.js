@@ -8,7 +8,7 @@ const MenuBar = () => {
 
     <Link
       className="item"
-      to={'/events'}
+      to={'/'}
     >
       <i className="big world icon" />
       <b>

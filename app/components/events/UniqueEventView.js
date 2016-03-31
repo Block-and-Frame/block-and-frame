@@ -25,30 +25,29 @@ const UniqueEventView = (props) => {
     );
   }
 
+  const dateTime = moment(props.date)
+    .set({
+      hour: props.time.split(':')[0],
+      minute: props.time.split(':')[1],
+    })
+    .add(1, 'day'); // not sure why a day has to be added
+    
+
   return (
     <div className="ui items">
-      <div className="eventName item">
+      <div className="eventName ui item">
         <div className="ui large header">
           {props.eventName}
         </div>
       </div>
 
-      <div className="ui item">
-
-      </div>
-       <div className="eventHashtag item ">
-        <div className="ui medium header">
-           {props.hashtag}
-        <div>
-        <i className="instagram small icon"></i>
-        <small>Tag your pics to post them here.</small>
-        </div>
-        </div>
+      <div className="eventHashtag ui item ">
+        <h3><i className="instagram small icon"></i>Tag your pics with <span id="bigger">{props.hashtag} </span> to post them here.</h3>
       </div>
 
       <div className="date item">
         <div className="ui small header">
-          <p>{moment(props.date).format('MMM Do YYYY')} at {moment(props.time, ['H:mm']).format('hh:mm A')}</p>
+          <p>{dateTime.format('MMMM Do YYYY, h:mm a')}</p>
         </div>
       </div>
 

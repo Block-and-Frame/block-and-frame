@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import eventHelpers from '../utils/eventHelpers';
+import authHelpers from '../utils/authHelpers';
 import Event from '../components/events/EventListItem';
 import MenuBar from '../components/MenuBar';
 import SearchBar from '../components/SearchBar';
@@ -13,18 +14,31 @@ class EventList extends React.Component {
     this.state = {
       data: [],
       filtered: [],
+      hashtags: [],
     };
 
     this.updateFiltered = this.updateFiltered.bind(this);
   }
 
-  // TODO: factor out request into eventHelpers
   componentDidMount() {
+    // When signing in with instagram, back end will redirect here with token and id in url
+    // Check if user arrived here with token and id and store it to log in
+    const { token, userId } = this.props.location.query;
+    if (token && userId) {
+      authHelpers.storeToken(token, userId);
+    }
+
     eventHelpers.getAllEvents()
     .then((response) => {
       this.setState({
         data: response.data,
         filtered: response.data,
+      });
+
+      this.setState({
+        hashtags: response.data.map((event) => {
+          return event.hashtag;
+        }),
       });
     });
   }
@@ -57,34 +71,44 @@ class EventList extends React.Component {
       }
       return 0;
     }).map((event) => {
+      const markers = [];
+      const location = {};
+      location.lat = Number(event.coordinates.split(',').shift());
+      location.lng = Number(event.coordinates.split(',').pop());
+      markers.push({ position: location });
+
       return (
         <Event
           key={event.id}
           name={event.name}
           location={event.location}
           description={event.description}
+          hashtag={event.hashtag}
           date={event.date}
           time={event.time}
           id={event.id}
-          creator_name={event.users[0] ? event.users[0].username : 'Anonymous' }
-          creator_email={event.users[0] ? event.users[0].instagram_username : ''}
+          creatorName={ eventHelpers.findCreator(event.users).username}
+          creatorInstaname={eventHelpers.findCreator(event.users).instagram_username }
+          creatorInstaPic={eventHelpers.findCreator(event.users).instagram_profile_pic }
+          numAttendees={event.users.length}
+          markers={markers}
+          center={location}
         />
       );
     });
     return (
       <div>
         <MenuBar />
-        <br />
         <div className="ui container">
           <h1 className="ui dividing header">Local Spreads</h1>
           <SearchBar
             items={this.state.data}
             updateFiltered={this.updateFiltered}
           />
-        </div>
-        <div className="ui segment">
+        <div className="ui three stackable cards">
           {eventNodes.length === 0 ? 'No events found :(' : eventNodes}
         </div>
+      </div>
       </div>
     );
   }

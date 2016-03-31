@@ -179,10 +179,10 @@ module.exports = {
       } else {
         const userEmail = user.attributes.email;
         const hostEmail = userInfo.host.email;
-        mg.sendText('bmoorebrian53@gmail.com', hostEmail, 'Someone joined your spread!', `Hi, ${userEmail} joined your spread`, 
+        mg.sendText('bmoorebrian53@gmail.com', hostEmail, 'Someone joined your spread!', `Hi, ${userEmail} joined your spread`,
           err => {
             if (err) {
-              console.log('ERROR SENDING EMAIL', error);
+              console.log('ERROR SENDING EMAIL', err);
             } else {
               console.log('SUCCESS SENDING EMAIL');
             }

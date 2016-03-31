@@ -3,12 +3,12 @@ import React, { Component } from 'react';
 class Footer extends Component {
   render() {
     return (
-      <div className="ui  vertical footer inverted segment">
+      <div className="ui vertical footer inverted segment" id="footer">
           <div className="ui center aligned container">
             <div className="ui inverted stackable divided grid">
             
               <div className="five wide column">
-                <h4 className="ui inverted  header">Navigation</h4>
+                <h4 className="ui inverted header">Navigation</h4>
                 <div className="ui inverted  link list">
                   <a href="/" className="item">Home</a>
                   <a href="#" className="item">Dashboard</a>
@@ -17,27 +17,23 @@ class Footer extends Component {
                 </div>
               </div>
               <div className="five wide column">
-                <h4 className="ui inverted  header">Follow Us:</h4>
-                <div className="ui inverted  link list">
+                <h4 className="ui inverted header">Follow Us:</h4>
+                <div className="ui inverted link list">
                   <div className="item">
-                    <button className="ui circular instagram icon button">
-                      <a href="https://www.instagram.com/spreadoutspace/">
+                    <button className="social ui circular instagram icon button">
                         <i className="instagram icon"></i>
-                      </a>
                     </button>
                   </div>
 
                   <div className="item">
-                    <button className="ui circular facebook icon button">
+                    <button className="social ui circular facebook icon button">
                       <i className="facebook icon"></i>
                     </button>
                   </div>
 
                      <div className="item">
-                    <button className="ui circular github icon button">
-                    <a href="https://github.com/Block-and-Frame/block-and-frame">
+                    <button className="social ui circular github icon button">
                       <i className="github icon"></i>
-                    </a>
                     </button>
                   </div>
 
